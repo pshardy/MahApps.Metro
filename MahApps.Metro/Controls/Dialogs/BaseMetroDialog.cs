@@ -355,6 +355,8 @@ namespace MahApps.Metro.Controls.Dialogs
 
             DefaultText = "";
             DefaultButtonFocus = MessageDialogResult.Negative;
+            DefaultEscapeButton = MessageDialogResult.Negative;
+
             CancellationToken = CancellationToken.None;
         }
 
@@ -402,7 +404,12 @@ namespace MahApps.Metro.Controls.Dialogs
         /// Gets or sets which button should be focused by default
         /// </summary>
         public MessageDialogResult DefaultButtonFocus { get; set; }
-        
+
+        /// <summary>
+        /// The button command to use when escape is pressed.
+        /// </summary>
+        public MessageDialogResult DefaultEscapeButton { get; set; }
+
         /// <summary>
         /// Gets/sets the token to cancel the dialog.
         /// </summary>

@@ -168,8 +168,13 @@ namespace MahApps.Metro.Controls.Dialogs
                 if (e.Key == Key.Escape)
                 {
                     cleanUpHandlers();
+                    tcs.TrySetResult(
+                        ButtonStyle == MessageDialogStyle.Affirmative ? MessageDialogResult.Affirmative :
+                        (int)DialogSettings.DefaultEscapeButton <= (int)ButtonStyle ? DialogSettings.DefaultEscapeButton :
+                        MessageDialogResult.Negative);
 
-                    tcs.TrySetResult(ButtonStyle == MessageDialogStyle.Affirmative ? MessageDialogResult.Affirmative : MessageDialogResult.Negative);
+                    // Prevent the call from going directly to a parent window with cancel key handling.
+                    e.Handled = true;
                 }
                 else if (e.Key == Key.Enter)
                 {
